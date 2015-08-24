@@ -2,16 +2,9 @@ require 'sinatra'
 require 'sinatra/reloader'
  
 get '/' do
-	"Hello world!"
+	# "Hello world!"
+
+	@title = "はろーわーるど"
+	erb :index
 
 end
-
-
-
-
-
-
-
-
-# @title = "はろーわーるど"
-# 	erb :index
