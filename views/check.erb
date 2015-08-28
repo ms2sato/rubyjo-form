@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="ja">
+	<head>
+		<meta charset="utf8">
+		<title>確認画面</title>
+		<link rel="stylesheet" href="css/bootstrap.css" type="text/css">
+		<link rel="stylesheet" href="style.css" type="text/css">
+	</head>
+	<body>
+		<div class="container-fluid">
+			<h1>確認</h1>
+			<div>
+				email: <%=@email%>
+			</div>
+			<div>
+				本文:
+				<p>
+					<%=@message%>
+				</p>
+			</div>
+			<p>送信します。よろしいですか。</p>
+			<div class="reok">
+				<a class="btn btn-danger" href="/">戻る</a>
+				<a class="btn btn-primary" href="/thank">進む</a>
+			</div>
+		
+
+		</div>
+	</body>
+</html>
