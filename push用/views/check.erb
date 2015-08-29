@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="ja">
+	<head>
+		<meta charset="utf8">
+		<title>確認画面</title>
+	</head>
+	<body>
+		<div>
+			<h1>確認</h1>
+			<div>
+				email: <%=@email%>
+			</div>
+			<div>
+				本文:
+				<p>
+					<%=@message%>
+				</p>
+			</div>
+			<p>送信します。よろしいですか。</p>
+			<div>
+				<a href="/">戻る</a>
+				<a href="/thank">進む</a>
+			</div>
+		</div>
+	</body>
+</html>
