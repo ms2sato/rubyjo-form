@@ -21,7 +21,13 @@
 			<p>送信します。よろしいですか。</p>
 			<div class="reok">
 				<a class="btn btn-danger" href="/">戻る</a>
-				<a class="btn btn-primary" href="/thank">進む</a>
+				<!-- <a class="btn btn-primary" href="/send-mail"> -->
+			<form action="send-mail" method="POST">
+				<input type="hidden" name="email" value="<%=@email%>">
+				<input type="hidden" name="message" value="<%=@message%>">
+
+				<input type="submit" value="進む"><!-- </a> -->
+			</form>
 			</div>
 		
 
