@@ -5,6 +5,8 @@ require 'sinatra'
 require 'sinatra/reloader'
 require 'rest_client'
 
+api_key = ""
+
  
 get '/' do
 	# "Hello world!"
@@ -25,20 +27,44 @@ post '/check' do
 end
 
 
- post '/send-mail' do
+# 変数を使ってver.
+post '/send-mail' do
  	@email = params[:email]
 	@message = params[:message]
-	def send_simple_message
-	   RestClient.post "https://api:key-cabe4d08ae4cc3fab6b5946eb54f0123"\
-  "@api.mailgun.net/v3/sandboxcebbc7038ab145f1968fcd1e04eb9142.mailgun.org/messages",
-      :from => "Excited User <mailgun@sandboxcebbc7038ab145f1968fcd1e04eb9142.mailgun.org>",
-	  :to => @email,
-	  :subject => "Hello miki",
-	  :text => @message
-	end
-	send_simple_message
+	test = ""
+	test << @email
+	test << "さんからお問い合わせがありました\n内容："
+	test << @message
+	send_simple_message(params[:email],params[:message],test)
 	erb :thank
 end
+def send_simple_message(email, message,test)
+	RestClient.post "https://api:key-cabe4d08ae4cc3fab6b5946eb54f0123"\
+    "@api.mailgun.net/v3/sandboxcebbc7038ab145f1968fcd1e04eb9142.mailgun.org/messages",
+    :from => "Excited User <mailgun@sandboxcebbc7038ab145f1968fcd1e04eb9142.mailgun.org>",
+	:to => "miki<miki.jy12@gmail.com>",
+	:subject => "お問い合わせがありました",
+	:text => test
+end
+
+
+# 直接打つver.
+# post '/send-mail' do
+#  	@email = params[:email]
+# 	@message = params[:message]
+# 	send_simple_message(params[:email],params[:message])
+# 	erb :thank
+# end
+
+# def send_simple_message(email, message)
+# 	RestClient.post "https://api:key-cabe4d08ae4cc3fab6b5946eb54f0123"\
+#     "@api.mailgun.net/v3/sandboxcebbc7038ab145f1968fcd1e04eb9142.mailgun.org/messages",
+#     :from => "Excited User <mailgun@sandboxcebbc7038ab145f1968fcd1e04eb9142.mailgun.org>",
+# 	:to => "miki<miki.jy12@gmail.com>",
+# 	:subject => "お問い合わせがありました",
+# 	:text => "#{email}さんからお問い合わせがありました。\n内容：#{message}"
+# end
+
 
 
 
