@@ -4,6 +4,8 @@ Bundler.require
 require 'sinatra'
 require 'sinatra/reloader'
 require 'rest_client'
+require 'dotenv'
+Dotenv.load
 
 api_key = ""
 
@@ -39,10 +41,10 @@ post '/send-mail' do
 	erb :thank
 end
 def send_simple_message(email, message,test)
-	RestClient.post "https://api:key-cabe4d08ae4cc3fab6b5946eb54f0123"\
-    "@api.mailgun.net/v3/sandboxcebbc7038ab145f1968fcd1e04eb9142.mailgun.org/messages",
-    :from => "Excited User <mailgun@sandboxcebbc7038ab145f1968fcd1e04eb9142.mailgun.org>",
-	:to => "miki<miki.jy12@gmail.com>",
+	RestClient.post "https://api:key-#{ENV['API_KEY']}"\
+    "@api.mailgun.net/v3/sandbox#{ENV['SANDBOX_ID']}.mailgun.org/messages",
+    :from => "Excited User <mailgun@sandbox#{ENV['SANDBOX_ID']}.mailgun.org>",
+	:to => "miki<#{ENV['MAIL_TO']}>",
 	:subject => "お問い合わせがありました",
 	:text => test
 end
