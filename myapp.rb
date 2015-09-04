@@ -19,7 +19,6 @@ end
  
 get '/' do
 	# "Hello world!"
-	@mail = Mail.last
 	@count = Mail.count
 	@title = "はろーわーるど"
 	erb :index
