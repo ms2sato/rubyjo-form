@@ -1,0 +1,18 @@
+body{background: lavenderblush;}
+a:link {color: violet;}
+
+a:hover {color: pink;} 
+a:active {color: red;} 
+/*input:focus {background:skyblue;} */
+.container-fluid{
+	margin: 20px 10px;
+}
+.app{
+	margin: 0 0 20px;
+}
+.reok a:visited{
+	color: white;
+}
+.app a:visited{
+	color: orange;
+}
