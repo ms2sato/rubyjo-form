@@ -6,13 +6,21 @@ require 'sinatra/reloader'
 require 'rest_client'
 require 'dotenv'
 Dotenv.load
+require 'yaml'
+require 'active_record'
 
-api_key = ""
+ActiveRecord::Base.configurations = YAML.load_file('database.yml')
+ActiveRecord::Base.establish_connection('development')
+
+class Mail < ActiveRecord::Base;
+end
+
 
  
 get '/' do
 	# "Hello world!"
-
+	@mail = Mail.last
+	@count = Mail.count
 	@title = "はろーわーるど"
 	erb :index
 
@@ -37,6 +45,10 @@ post '/send-mail' do
 	test << @email
 	test << "さんからお問い合わせがありました\n内容："
 	test << @message
+	mail = Mail.new
+	mail.email=@email
+	mail.message=@message
+	mail.save
 	send_simple_message(params[:email],params[:message],test)
 	erb :thank
 end

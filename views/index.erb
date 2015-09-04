@@ -21,6 +21,13 @@
 					<label for="text">内容</label>
 					<textarea name="message" class="form-control" id="text" rows="3"></textarea>
 				</div>
+				<div>
+					過去の記録<br>
+					<%=@mail.email%><br>
+					<%=@mail.message%><br>
+					受信件数 <%=@count%>件
+
+				</div>
 			<!-- <a href="/check" style="text-decoration:none;"> --><input type="submit" value="OK" style="background-color:white; border-color:pink"><!-- </a> -->
 			</form>
 		</div>	
