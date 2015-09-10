@@ -6,14 +6,14 @@
 	</head>
 	<body>
 		<a href="/about" target="_blank">このアプリについて</a>
-		<form action="check">
+		<form action="check" method="POST" role="form">
 			<div>
 				<label for="input-mail">メールアドレス</label>
-				<input type="email" class="form-control" id="input-mail">
+				<input name="email" type="email" class="form-control" id="input-mail">
 			</div>
 			<div>
 				<label for="text">内容</label>
-				<textarea class="form-control" id="text"></textarea>
+				<textarea name="message" class="form-control" id="text"></textarea>
 			</div>
 			<input type="submit" svalue="OK">
 		</form>
