@@ -3,29 +3,19 @@
 	<head>
 		<meta charset="utf8">
 		<title>送信フォーム</title>
-		<link rel="stylesheet" href="css/bootstrap.css" type="text/css">
-		<link rel="stylesheet" href="style.css" type="text/css">
-
 	</head>
 	<body>
-		<div class="container-fluid">
-			<div class="app">
-				<a href="/about" target="_blank">このアプリについて</a>
+		<a href="/about" target="_blank">このアプリについて</a>
+		<form action="check" method="POST" role="form">
+			<div>
+				<label for="input-mail">メールアドレス</label>
+				<input name="email" type="email" class="form-control" id="input-mail">
 			</div>
-			<form action ="check" method="POST" role="form" >
-				<div class="form-group">
-					<label for="InputEmail">メールアドレス</label>
-					<input name ="email" type="email" class="form-control" id="InputEmail" size="50px" placeholder="example@ex.com"><!-- maxlength="10"  -->
-				</div>
-				<div class="form-group">
-					<label for="text">内容</label>
-					<textarea name="message" class="form-control" id="text" rows="3"></textarea>
-				</div>
-				<div>
-					受信件数 <%=@count%>件
-				</div>
-			<!-- <a href="/check" style="text-decoration:none;"> --><input type="submit" value="OK" style="background-color:white; border-color:pink"><!-- </a> -->
-			</form>
-		</div>	
+			<div>
+				<label for="text">内容</label>
+				<textarea name="message" class="form-control" id="text"></textarea>
+			</div>
+			<input type="submit" svalue="OK">
+		</form>
 	</body>
 </html>
