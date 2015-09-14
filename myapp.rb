@@ -26,14 +26,14 @@ end
 post '/send-mail' do
 	@email = params[:email]
 	@message = params[:message] 
-	send_simple_message
+	send_simple_message(params[:email],params[:message])
 	erb :thank
 end
-def send_simple_message
+def send_simple_message(email, message)
 	RestClient.post "https://api:key-#{ENV['API_KEY']}"\
     "@api.mailgun.net/v3/sandbox#{ENV['SANDBOX_ID']}.mailgun.org/messages",
     :from => "Excited User  <mailgun@sandbox#{ENV['SANDBOX_ID']}.mailgun.org>",
 	:to => "miki<#{ENV['MAIL_TO']}>",
 	:subject => "お問い合わせがありました",
-	:text => "こんにちは"
+	:text => "#{email}さんからお問い合わせがありました。\n内容：#{message}"
 end
