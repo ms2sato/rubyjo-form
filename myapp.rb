@@ -8,6 +8,11 @@ require 'sinatra/reloader'
 require 'rest_client'
 require 'dotenv'
 Dotenv.load
+require 'yaml'
+require 'active-record'
+
+ActiveRecod::Base.configuration = YAML.load_file('database.yml')
+ActiveRecod::Base.establish_connection(:development)
 
 get '/' do
 	erb :index
@@ -33,7 +38,7 @@ def send_simple_message(email, message)
 	RestClient.post "https://api:key-#{ENV['API_KEY']}"\
     "@api.mailgun.net/v3/sandbox#{ENV['SANDBOX_ID']}.mailgun.org/messages",
     :from => "Excited User  <mailgun@sandbox#{ENV['SANDBOX_ID']}.mailgun.org>",
-	:to => "miki<#{ENV['MAIL_TO']}>",
+	:to => "お問い合わせフォーム<#{ENV['MAIL_TO']}>",
 	:subject => "お問い合わせがありました",
 	:text => "#{email}さんからお問い合わせがありました。\n内容：#{message}"
 end
