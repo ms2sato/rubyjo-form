@@ -14,6 +14,8 @@ require 'active-record'
 ActiveRecod::Base.configuration = YAML.load_file('database.yml')
 ActiveRecod::Base.establish_connection(:development)
 
+class Sample < ActiveRecod::Base; end
+
 get '/' do
 	erb :index
 end
