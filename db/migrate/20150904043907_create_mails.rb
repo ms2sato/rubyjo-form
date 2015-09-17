@@ -1,8 +1,8 @@
 class CreateMails < ActiveRecord::Migration
   def change
-  	create_table :samples do |t|
-      t.string  :id
-      t.string :name
+  	create_table :mails do |t|
+      t.string  :email
+      t.string :message
       t.timestamps
     end
   end

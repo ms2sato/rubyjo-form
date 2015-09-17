@@ -1,6 +1,5 @@
-# push用
-
-require 'rubygems'
+#PUsh用
+require 'rubygems' 
 require 'bundler'
 Bundler.require
 require 'sinatra'
@@ -9,14 +8,16 @@ require 'rest_client'
 require 'dotenv'
 Dotenv.load
 require 'yaml'
-require 'active-record'
+require 'active_record'
 
-ActiveRecod::Base.configuration = YAML.load_file('database.yml')
-ActiveRecod::Base.establish_connection(:development)
+ActiveRecord::Base.establish_connection(ENV['DATABASE_URL'])
 
-class Sample < ActiveRecod::Base; end
+class Mail < ActiveRecord::Base;
+end
+
 
 get '/' do
+	@count = Mail.count
 	erb :index
 end
 
@@ -33,6 +34,10 @@ end
 post '/send-mail' do
 	@email = params[:email]
 	@message = params[:message] 
+	mail=Mail.new
+	mail.email=@email
+	mail.message=@message
+	mail.save
 	send_simple_message(params[:email],params[:message])
 	erb :thank
 end
