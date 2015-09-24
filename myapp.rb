@@ -9,12 +9,12 @@ require 'rest_client'
 require 'dotenv'
 Dotenv.load
 require 'yaml'
-require 'active-record'
+require 'active_record'
 
-ActiveRecod::Base.configuration = YAML.load_file('database.yml')
-ActiveRecod::Base.establish_connection(:development)
+ActiveRecord::Base.configurations = YAML.load_file('database.yml')
+ActiveRecord::Base.establish_connection(:development)
 
-class Sample < ActiveRecod::Base; end
+class Sample < ActiveRecord::Base; end
 
 get '/' do
 	erb :index
@@ -32,7 +32,7 @@ end
 
 post '/send-mail' do
 	@email = params[:email]
-	@message = params[:message] 
+	@message = params[:message]
 	send_simple_message(params[:email],params[:message])
 	erb :thank
 end
